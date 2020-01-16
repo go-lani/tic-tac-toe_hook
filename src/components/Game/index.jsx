@@ -47,25 +47,6 @@ const Game = () => {
     setIsLastPlayer(index % 2 === 0);
   };
 
-  const squaresRender = squares.map((square, index) => (
-    <Square
-      key={index}
-      square={square}
-      squareIndex={index}
-      firstItem={index % 3 ? null : 'first'}
-      onAddHistory={addHistory}
-    />
-  ));
-
-  const historyRender = histories.map((history, index) => {
-    const guide = index ? 'Go to move #' + index : 'Go to game start';
-    return (
-      <li key={index}>
-        <button onClick={() => jumpTo(index)}>{guide}</button>
-      </li>
-    );
-  });
-
   const calculateWinner = squares => {
     const lines = [
       [0, 1, 2],
@@ -91,6 +72,25 @@ const Game = () => {
 
     return `Next Player ${isLastPlayer ? 'X' : 'O'}`;
   };
+
+  const squaresRender = squares.map((square, index) => (
+    <Square
+      key={index}
+      square={square}
+      squareIndex={index}
+      firstItem={index % 3 ? null : 'first'}
+      onAddHistory={addHistory}
+    />
+  ));
+
+  const historyRender = histories.map((history, index) => {
+    const guide = index ? 'Go to move #' + index : 'Go to game start';
+    return (
+      <li key={index}>
+        <button onClick={() => jumpTo(index)}>{guide}</button>
+      </li>
+    );
+  });
 
   // useEffect(() => {
   //   console.log('squares', squares);
